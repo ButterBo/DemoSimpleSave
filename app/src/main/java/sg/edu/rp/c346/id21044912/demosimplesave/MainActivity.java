@@ -30,8 +30,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        /*
+        Original
         String msg = "No greetings!";
         Toast toast = Toast.makeText(MainActivity.this, msg, Toast.LENGTH_LONG);
         toast.show();
+         */
+        //Step1: obtain SharedPreferences instance
+        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        //Step2: Retrieve saved data from SharedPreferences with a default value if no matching data
+        String msg = prefs.getString("greetings", "No greetings name");
+        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_LONG).show();
+
     }
 }
